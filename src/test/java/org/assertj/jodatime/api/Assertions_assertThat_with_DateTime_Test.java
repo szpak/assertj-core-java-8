@@ -18,22 +18,25 @@ import static org.junit.Assert.assertSame;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
+import java.time.ZonedDateTime;
+
 /**
  * Tests for <code>{@link Assertions#assertThat(DateTime)}</code>.
  * 
  * @author Joel Costigliola
+ * @author Marcin Zajączkowski
  */
 public class Assertions_assertThat_with_DateTime_Test {
 
   @Test
   public void should_create_Assert() {
-    DateTimeAssert assertions = Assertions.assertThat(new DateTime());
+    DateTimeAssert assertions = Assertions.assertThat(ZonedDateTime.now());
     assertNotNull(assertions);
   }
 
   @Test
   public void should_pass_actual() {
-    DateTime dateTime = new DateTime();
+    ZonedDateTime dateTime = ZonedDateTime.now();
     DateTimeAssert assertions = Assertions.assertThat(dateTime);
     assertSame(dateTime, assertions.getActual());
   }

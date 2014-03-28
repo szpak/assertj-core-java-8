@@ -15,7 +15,7 @@ package org.assertj.jodatime.api.datetime;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
-import static org.joda.time.DateTimeZone.UTC;
+import static java.time.ZoneOffset.UTC;
 
 import org.joda.time.DateTime;
 import org.junit.Test;
@@ -23,18 +23,21 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
+import java.time.ZonedDateTime;
+
 /**
  * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)
  * 
  * @author Joel Costigliola
+ * @author Marcin Zajączkowski
  */
 @RunWith(Theories.class)
 public class DateTimeAssert_isNotEqualTo_errors_Test extends DateTimeAssertBaseTest {
 
   @Theory
-  public void test_isNotEqualTo_assertion(DateTime referenceDate) {
+  public void test_isNotEqualTo_assertion(ZonedDateTime referenceDate) {
     // WHEN
-    assertThat(referenceDate).isNotEqualTo(referenceDate.plus(1).toString());
+    assertThat(referenceDate).isNotEqualTo(referenceDate.plusNanos(1).toString());
     // THEN
     verify_that_isNotEqualTo_assertion_fails_and_throws_AssertionError(referenceDate);
   }
@@ -42,10 +45,10 @@ public class DateTimeAssert_isNotEqualTo_errors_Test extends DateTimeAssertBaseT
   @Test
   public void test_isNotEqualTo_assertion_error_message() {
     try {
-      DateTime date = new DateTime(2000, 1, 5, 3, 0, 5, UTC);
+      ZonedDateTime date = ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC);
       assertThat(date).isNotEqualTo(date.toString());
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("\nExpecting:\n <2000-01-05T03:00:05.000Z>\nnot to be equal to:\n <2000-01-05T03:00:05.000Z>\n");
+      assertThat(e).hasMessage("\nExpecting:\n <2000-01-05T03:00:05Z>\nnot to be equal to:\n <2000-01-05T03:00:05Z>\n");
       return;
     }
     fail("Should have thrown AssertionError");
@@ -54,11 +57,11 @@ public class DateTimeAssert_isNotEqualTo_errors_Test extends DateTimeAssertBaseT
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
-    assertThat(new DateTime()).isNotEqualTo((String) null);
+        "The String representing the ZonedDateTime to compare actual with should not be null");
+    assertThat(ZonedDateTime.now()).isNotEqualTo((String) null);
   }
 
-  private static void verify_that_isNotEqualTo_assertion_fails_and_throws_AssertionError(DateTime reference) {
+  private static void verify_that_isNotEqualTo_assertion_fails_and_throws_AssertionError(ZonedDateTime reference) {
     try {
       assertThat(reference).isNotEqualTo(reference.toString());
     } catch (AssertionError e) {

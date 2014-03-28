@@ -12,18 +12,20 @@
  */
 package org.assertj.jodatime.api;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
+
+import java.time.ZonedDateTime;
 
 /**
  * The entry point for all Joda Time assertions.
  * 
  * @author Joel Costigliola
  * @author Paweł Stawicki
+ * @author Marcin Zajączkowski
  */
 public class Assertions {
 
-  public static DateTimeAssert assertThat(DateTime date) {
+  public static DateTimeAssert assertThat(ZonedDateTime date) {
     return new DateTimeAssert(DateTimeAssert.class, date);
   }
 
