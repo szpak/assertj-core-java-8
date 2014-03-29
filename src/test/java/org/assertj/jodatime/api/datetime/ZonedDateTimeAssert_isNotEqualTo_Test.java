@@ -12,30 +12,31 @@
  */
 package org.assertj.jodatime.api.datetime;
 
-import static java.time.ZoneOffset.UTC;
-import static org.assertj.jodatime.api.Assertions.assertThat;
-
 import org.junit.Test;
 
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
+import static org.assertj.jodatime.api.Assertions.assertThat;
+
 /**
- * Tests specific to {@link org.assertj.jodatime.api.DateTimeAssert#isEqualTo(org.joda.time.DateTime)} that can't be
- * done in {@link org.assertj.core.api.AbstractAssert#isEqualTo(Object)} tests.
+ * Tests specific to {@link org.assertj.jodatime.api.ZonedDateTimeAssert#isNotEqualTo(org.joda.time.DateTime)} that can't be
+ * done in {@link org.assertj.core.api.AbstractAssert#isNotEqualTo(Object)} tests.
  *
  * @author Joel Costigliola
  * @author Marcin Zajączkowski
  */
-public class DateTimeAssert_isEqualTo_Test extends DateTimeAssertBaseTest {
+public class ZonedDateTimeAssert_isNotEqualTo_Test extends ZonedDateTimeAssertBaseTest {
 
   @Test
-  public void isEqualTo_should_compare_datetimes_in_actual_timezone() {
-    ZonedDateTime utcDateTime = ZonedDateTime.of(2013, 6, 10, 0, 0, 0, 0, UTC);
+  public void isNotEqualTo_should_compare_datetimes_in_actual_timezone() {
+    ZonedDateTime utcDateTime = ZonedDateTime.of(2013, 6, 10, 2, 0, 0, 0, ZoneOffset.UTC);
     ZoneId cestTimeZone = ZoneId.of("Europe/Berlin");
     ZonedDateTime cestDateTime = ZonedDateTime.of(2013, 6, 10, 2, 0, 0, 0, cestTimeZone);
-    // datetime are equals in same timezone
-    assertThat(utcDateTime).as("in UTC time zone").isEqualTo(cestDateTime);
-    assertThat(cestDateTime).as("in CEST time zone").isEqualTo(utcDateTime);
+    // datetime are not equals because they are in different timezone
+    assertThat(utcDateTime).as("in UTC time zone").isNotEqualTo(cestDateTime);
+    assertThat(cestDateTime).as("in CEST time zone").isNotEqualTo(utcDateTime);
   }
+
 }

@@ -23,13 +23,13 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
 /**
- * Tests specific to {@link org.assertj.jodatime.api.DateTimeAssert#isIn(org.joda.time.DateTime...)} that can't be done
+ * Tests specific to {@link org.assertj.jodatime.api.ZonedDateTimeAssert#isIn(org.joda.time.DateTime...)} that can't be done
  * in {@link org.assertj.core.api.AbstractAssert#isIn(Object...)} tests.
  *
  * @author Joel Costigliola
  * @author Marcin Zajączkowski
  */
-public class DateTimeAssert_isIn_Test extends DateTimeAssertBaseTest {
+public class ZonedDateTimeAssert_isIn_Test extends ZonedDateTimeAssertBaseTest {
 
   @Test
   @Ignore //TODO: Explain why it fails

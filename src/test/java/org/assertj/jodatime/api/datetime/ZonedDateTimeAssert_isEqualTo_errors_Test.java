@@ -17,7 +17,6 @@ import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 import static java.time.ZoneOffset.UTC;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -32,23 +31,22 @@ import java.time.ZonedDateTime;
  * @author Marcin Zajączkowski
  */
 @RunWith(Theories.class)
-public class DateTimeAssert_isNotEqualTo_errors_Test extends DateTimeAssertBaseTest {
+public class ZonedDateTimeAssert_isEqualTo_errors_Test extends ZonedDateTimeAssertBaseTest {
 
   @Theory
-  public void test_isNotEqualTo_assertion(ZonedDateTime referenceDate) {
+  public void test_isEqualTo_assertion(ZonedDateTime referenceDate) {
     // WHEN
-    assertThat(referenceDate).isNotEqualTo(referenceDate.plusNanos(1).toString());
+    assertThat(referenceDate).isEqualTo(referenceDate.toString());
     // THEN
-    verify_that_isNotEqualTo_assertion_fails_and_throws_AssertionError(referenceDate);
+    verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(referenceDate);
   }
 
   @Test
-  public void test_isNotEqualTo_assertion_error_message() {
+  public void test_isEqualTo_assertion_error_message() {
     try {
-      ZonedDateTime date = ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC);
-      assertThat(date).isNotEqualTo(date.toString());
+      assertThat(ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC)).isEqualTo(ZonedDateTime.of(2012, 1, 1, 3, 3, 3, 0, UTC).toString());
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("\nExpecting:\n <2000-01-05T03:00:05Z>\nnot to be equal to:\n <2000-01-05T03:00:05Z>\n");
+      assertThat(e).hasMessage("expected:<20[12-01-01T03:03:03]Z> but was:<20[00-01-05T03:00:05]Z>");
       return;
     }
     fail("Should have thrown AssertionError");
@@ -58,12 +56,12 @@ public class DateTimeAssert_isNotEqualTo_errors_Test extends DateTimeAssertBaseT
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
         "The String representing the ZonedDateTime to compare actual with should not be null");
-    assertThat(ZonedDateTime.now()).isNotEqualTo((String) null);
+    assertThat(ZonedDateTime.now()).isEqualTo((String) null);
   }
 
-  private static void verify_that_isNotEqualTo_assertion_fails_and_throws_AssertionError(ZonedDateTime reference) {
+  private static void verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(ZonedDateTime reference) {
     try {
-      assertThat(reference).isNotEqualTo(reference.toString());
+      assertThat(reference).isEqualTo(reference.plusNanos(1).toString());
     } catch (AssertionError e) {
       // AssertionError was expected
       return;

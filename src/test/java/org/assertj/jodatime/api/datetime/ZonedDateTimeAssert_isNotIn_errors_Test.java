@@ -32,7 +32,7 @@ import static org.assertj.jodatime.api.Assertions.assertThat;
  * @author Marcin Zajączkowski
  */
 @RunWith(Theories.class)
-public class DateTimeAssert_isNotIn_errors_Test extends DateTimeAssertBaseTest {
+public class ZonedDateTimeAssert_isNotIn_errors_Test extends ZonedDateTimeAssertBaseTest {
 
   @Theory
   public void test_isNotIn_assertion(ZonedDateTime referenceDate) {

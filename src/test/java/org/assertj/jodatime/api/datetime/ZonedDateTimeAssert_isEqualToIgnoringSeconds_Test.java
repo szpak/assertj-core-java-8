@@ -14,7 +14,7 @@ package org.assertj.jodatime.api.datetime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
-import static org.assertj.jodatime.api.DateTimeAssert.NULL_DATE_TIME_PARAMETER_MESSAGE;
+import static org.assertj.jodatime.api.ZonedDateTimeAssert.NULL_DATE_TIME_PARAMETER_MESSAGE;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 import static java.time.ZoneOffset.UTC;
 
@@ -24,7 +24,7 @@ import org.junit.Test;
 import java.time.ZonedDateTime;
 
 
-public class DateTimeAssert_isEqualToIgnoringSeconds_Test extends JodaTimeBaseTest {
+public class ZonedDateTimeAssert_isEqualToIgnoringSeconds_Test extends JodaTimeBaseTest {
 
   private final ZonedDateTime refDatetime = ZonedDateTime.of(2000, 1, 1, 23, 51, 0, 0, UTC);
 

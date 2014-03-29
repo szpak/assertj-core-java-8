@@ -25,8 +25,8 @@ import java.time.ZonedDateTime;
  */
 public class Assertions {
 
-  public static DateTimeAssert assertThat(ZonedDateTime date) {
-    return new DateTimeAssert(DateTimeAssert.class, date);
+  public static ZonedDateTimeAssert assertThat(ZonedDateTime date) {
+    return new ZonedDateTimeAssert(ZonedDateTimeAssert.class, date);
   }
 
   public static LocalDateTimeAssert assertThat(LocalDateTime localDateTime) {

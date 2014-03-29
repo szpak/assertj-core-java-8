@@ -26,18 +26,18 @@ import java.time.ZonedDateTime;
  * @author Joel Costigliola
  * @author Marcin Zajączkowski
  */
-public class Assertions_assertThat_with_DateTime_Test {
+public class Assertions_assertThat_with_ZonedDateTime_Test {
 
   @Test
   public void should_create_Assert() {
-    DateTimeAssert assertions = Assertions.assertThat(ZonedDateTime.now());
+    ZonedDateTimeAssert assertions = Assertions.assertThat(ZonedDateTime.now());
     assertNotNull(assertions);
   }
 
   @Test
   public void should_pass_actual() {
     ZonedDateTime dateTime = ZonedDateTime.now();
-    DateTimeAssert assertions = Assertions.assertThat(dateTime);
+    ZonedDateTimeAssert assertions = Assertions.assertThat(dateTime);
     assertSame(dateTime, assertions.getActual());
   }
 }

@@ -12,6 +12,12 @@
  */
 package org.assertj.jodatime.api.datetime;
 
+import static java.time.ZoneOffset.UTC;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.core.util.FailureMessages.actualIsNull;
+import static org.assertj.jodatime.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -19,13 +25,6 @@ import org.junit.runner.RunWith;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-
-import static java.time.ZoneOffset.UTC;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
-import static org.assertj.core.util.FailureMessages.actualIsNull;
-import static org.assertj.jodatime.api.Assertions.assertThat;
 
 /**
  * @author Paweł Stawicki
@@ -33,42 +32,39 @@ import static org.assertj.jodatime.api.Assertions.assertThat;
  * @author Marcin Zajączkowski
  */
 @RunWith(Theories.class)
-public class DateTimeAssert_isAfter_Test extends DateTimeAssertBaseTest {
+public class ZonedDateTimeAssert_isAfterOrEqualTo_Test extends ZonedDateTimeAssertBaseTest {
 
   @Theory
-  public void test_isAfter_assertion(ZonedDateTime referenceDate, ZonedDateTime dateBefore, ZonedDateTime dateAfter) {
+  public void test_isAfterOrEqual_assertion(ZonedDateTime referenceDate, ZonedDateTime dateBefore, ZonedDateTime dateAfter) {
     // GIVEN
     testAssumptions(referenceDate, dateBefore, dateAfter);
     // WHEN
-    assertThat(dateAfter).isAfter(referenceDate);
-    assertThat(dateAfter).isAfter(referenceDate.format(DateTimeFormatter.ISO_DATE_TIME));
+    assertThat(dateAfter).isAfterOrEqualTo(referenceDate);
+    assertThat(dateAfter).isAfterOrEqualTo(referenceDate.toString());
+    assertThat(referenceDate).isAfterOrEqualTo(referenceDate);
+    assertThat(referenceDate).isAfterOrEqualTo(referenceDate.toString());
     // THEN
-    verify_that_isAfter_assertion_fails_and_throws_AssertionError(referenceDate, referenceDate);
-    verify_that_isAfter_assertion_fails_and_throws_AssertionError(dateBefore, referenceDate);
+    verify_that_isAfterOrEqual_assertion_fails_and_throws_AssertionError(dateBefore, referenceDate);
   }
 
   @Test
-  public void isAfter_should_compare_datetimes_in_actual_timezone() {
+  public void isAfterOrEqualTo_should_compare_datetimes_in_actual_timezone() {
     ZonedDateTime utcDateTime = ZonedDateTime.of(2013, 6, 10, 0, 0, 0, 0, UTC);
     ZoneId cestTimeZone = ZoneId.of("Europe/Berlin");
-    ZonedDateTime cestDateTime = ZonedDateTime.of(2013, 6, 10, 1, 0, 0, 0, cestTimeZone);
-    // utcDateTime > cestDateTime
-    assertThat(utcDateTime).as("in UTC time zone").isAfter(cestDateTime);
-    try {
-      ZonedDateTime equalsCestDateTime = ZonedDateTime.of(2013, 6, 10, 2, 0, 0, 0, cestTimeZone);
-      assertThat(utcDateTime).as("in UTC time zone").isAfter(equalsCestDateTime);
-    } catch (AssertionError e) {
-      return;
-    }
-    fail("Should have thrown AssertionError");
+    ZonedDateTime cestDateTime1 = ZonedDateTime.of(2013, 6, 10, 2, 0, 0, 0, cestTimeZone);
+    ZonedDateTime cestDateTime2 = ZonedDateTime.of(2013, 6, 10, 1, 0, 0, 0, cestTimeZone);
+    // utcDateTime = cestDateTime1
+    assertThat(utcDateTime).as("in UTC time zone").isAfterOrEqualTo(cestDateTime1);
+    // utcDateTime > cestDateTime2
+    assertThat(utcDateTime).as("in UTC time zone").isAfterOrEqualTo(cestDateTime2);
   }
 
   @Test
-  public void test_isAfter_assertion_error_message() {
+  public void test_isAfterOrEqual_assertion_error_message() {
     try {
-      assertThat(ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC)).isAfter(ZonedDateTime.of(2012, 1, 1, 3, 3, 3, 0, UTC));
+      assertThat(ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC)).isAfterOrEqualTo(ZonedDateTime.of(2012, 1, 1, 3, 3, 3, 0, UTC));
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:05Z>\nto be strictly after:\n  <2012-01-01T03:03:03Z>\n");
+      assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:05Z>\nto be after or equals to:\n  <2012-01-01T03:03:03Z>\n");
       return;
     }
     fail("Should have thrown AssertionError");
@@ -78,30 +74,30 @@ public class DateTimeAssert_isAfter_Test extends DateTimeAssertBaseTest {
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
     ZonedDateTime actual = null;
-    assertThat(actual).isAfter(ZonedDateTime.now());
+    assertThat(actual).isAfterOrEqualTo(ZonedDateTime.now());
   }
 
   @Test
   public void should_fail_if_dateTime_parameter_is_null() {
     expectException(IllegalArgumentException.class, "The ZonedDateTime to compare actual with should not be null");
-    assertThat(ZonedDateTime.now()).isAfter((ZonedDateTime) null);
+    assertThat(ZonedDateTime.now()).isAfterOrEqualTo((ZonedDateTime) null);
   }
 
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
                     "The String representing the ZonedDateTime to compare actual with should not be null");
-    assertThat(ZonedDateTime.now()).isAfter((String) null);
+    assertThat(ZonedDateTime.now()).isAfterOrEqualTo((String) null);
   }
 
-  private static void verify_that_isAfter_assertion_fails_and_throws_AssertionError(ZonedDateTime dateToCheck,
+  private static void verify_that_isAfterOrEqual_assertion_fails_and_throws_AssertionError(ZonedDateTime dateToCheck,
       ZonedDateTime reference) {
     try {
-      assertThat(dateToCheck).isAfter(reference);
+      assertThat(dateToCheck).isAfterOrEqualTo(reference);
     } catch (AssertionError e) {
       // AssertionError was expected, test same assertion with String based parameter
       try {
-        assertThat(dateToCheck).isAfter(reference.toString());
+        assertThat(dateToCheck).isAfterOrEqualTo(reference.toString());
       } catch (AssertionError e2) {
         // AssertionError was expected (again)
         return;

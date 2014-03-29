@@ -34,7 +34,7 @@ import java.time.ZonedDateTime;
  * @author Marcin Zajączkowski
  */
 @RunWith(Theories.class)
-public class DateTimeAssert_isBeforeOrEqualTo_Test extends DateTimeAssertBaseTest {
+public class ZonedDateTimeAssert_isBeforeOrEqualTo_Test extends ZonedDateTimeAssertBaseTest {
 
   @Theory
   public void test_isBeforeOrEqual_assertion(ZonedDateTime referenceDate, ZonedDateTime dateBefore, ZonedDateTime dateAfter) {
