@@ -12,7 +12,7 @@
  */
 package org.assertj.jodatime.api;
 
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 
 import java.time.ZonedDateTime;
 

@@ -16,25 +16,26 @@ package org.assertj.jodatime.api;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 import org.junit.Test;
 
 /**
  * Tests for <code>{@link Assertions#assertThat(LocalDateTime)}</code>.
  * 
  * @author Joel Costigliola
+ * @author Marcin Zajączkowski
  */
 public class Assertions_assertThat_with_LocalDateTime_Test {
 
   @Test
   public void should_create_Assert() {
-    LocalDateTimeAssert assertions = Assertions.assertThat(new LocalDateTime());
+    LocalDateTimeAssert assertions = Assertions.assertThat(LocalDateTime.now());
     assertNotNull(assertions);
   }
 
   @Test
   public void should_pass_actual() {
-    LocalDateTime localDateTime = new LocalDateTime();
+    LocalDateTime localDateTime = LocalDateTime.now();
     LocalDateTimeAssert assertions = Assertions.assertThat(localDateTime);
     assertSame(localDateTime, assertions.getActual());
   }
