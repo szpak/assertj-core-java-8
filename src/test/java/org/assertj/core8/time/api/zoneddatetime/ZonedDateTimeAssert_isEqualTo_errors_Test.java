@@ -10,7 +10,7 @@
  *
  * Copyright 2012-2013 the original author or authors.
  */
-package org.assertj.core8.time.api.datetime;
+package org.assertj.core8.time.api.zoneddatetime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -26,49 +26,42 @@ import java.time.ZonedDateTime;
 
 /**
  * Only test String based assertion (tests with {@link ZonedDateTime} are already defined in assertj-core)
- *
+ * 
  * @author Joel Costigliola
  * @author Marcin Zajączkowski
  */
 @RunWith(Theories.class)
-public class ZonedDateTimeAssert_isIn_errors_Test extends ZonedDateTimeAssertBaseTest {
+public class ZonedDateTimeAssert_isEqualTo_errors_Test extends ZonedDateTimeAssertBaseTest {
 
   @Theory
-  public void test_isIn_assertion(ZonedDateTime referenceDate) {
+  public void test_isEqualTo_assertion(ZonedDateTime referenceDate) {
     // WHEN
-    assertThat(referenceDate).isIn(referenceDate.toString(), referenceDate.plusNanos(1).toString());
+    assertThat(referenceDate).isEqualTo(referenceDate.toString());
     // THEN
-    verify_that_isIn_assertion_fails_and_throws_AssertionError(referenceDate);
+    verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(referenceDate);
   }
 
   @Test
-  public void test_isIn_assertion_error_message() {
+  public void test_isEqualTo_assertion_error_message() {
     try {
-      assertThat(ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC))
-          .isIn(ZonedDateTime.of(2012, 1, 1, 3, 3, 3, 0, UTC).toString());
+      assertThat(ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC)).isEqualTo(ZonedDateTime.of(2012, 1, 1, 3, 3, 3, 0, UTC).toString());
     } catch (AssertionError e) {
-      assertThat(e).hasMessage(
-          "\nExpecting:\n <2000-01-05T03:00:05Z>\nto be in:\n <[2012-01-01T03:03:03Z]>\n");
+      assertThat(e).hasMessage("expected:<20[12-01-01T03:03:03]Z> but was:<20[00-01-05T03:00:05]Z>");
       return;
     }
     fail("Should have thrown AssertionError");
   }
 
   @Test
-  public void should_fail_if_dateTimes_as_string_array_parameter_is_null() {
-    expectException(IllegalArgumentException.class, "The given ZonedDateTime array should not be null");
-    assertThat(ZonedDateTime.now()).isIn((String[]) null);
+  public void should_fail_if_dateTime_as_string_parameter_is_null() {
+    expectException(IllegalArgumentException.class,
+        "The String representing the ZonedDateTime to compare actual with should not be null");
+    assertThat(ZonedDateTime.now()).isEqualTo((String) null);
   }
 
-  @Test
-  public void should_fail_if_dateTimes_as_string_array_parameter_is_empty() {
-    expectException(IllegalArgumentException.class, "The given ZonedDateTime array should not be empty");
-    assertThat(ZonedDateTime.now()).isIn(new String[0]);
-  }
-
-  private static void verify_that_isIn_assertion_fails_and_throws_AssertionError(ZonedDateTime reference) {
+  private static void verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(ZonedDateTime reference) {
     try {
-      assertThat(reference).isIn(reference.plusNanos(1).toString(), reference.plusNanos(2).toString());
+      assertThat(reference).isEqualTo(reference.plusNanos(1).toString());
     } catch (AssertionError e) {
       // AssertionError was expected
       return;

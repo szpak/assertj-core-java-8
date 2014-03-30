@@ -10,7 +10,7 @@
  *
  * Copyright 2012-2013 the original author or authors.
  */
-package org.assertj.core8.time.api.datetime;
+package org.assertj.core8.time.api.zoneddatetime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
@@ -24,36 +24,36 @@ import org.junit.Test;
 import java.time.ZonedDateTime;
 
 
-public class ZonedDateTimeAssert_isEqualToIgnoringMinutes_Test extends JodaTimeBaseTest {
+public class ZonedDateTimeAssert_isEqualToIgnoringSeconds_Test extends JodaTimeBaseTest {
 
-  private final ZonedDateTime refDatetime = ZonedDateTime.of(2000, 1, 1, 23, 0, 0, 0, UTC);
+  private final ZonedDateTime refDatetime = ZonedDateTime.of(2000, 1, 1, 23, 51, 0, 0, UTC);
 
   @Test
-  public void should_pass_if_actual_is_equal_to_other_ignoring_minute_fields() {
-    assertThat(refDatetime).isEqualToIgnoringMinutes(refDatetime.plusMinutes(1));
+  public void should_pass_if_actual_is_equal_to_other_ignoring_second_fields() {
+    assertThat(refDatetime).isEqualToIgnoringSeconds(refDatetime.plusSeconds(1));
   }
 
   @Test
-  public void should_fail_if_actual_is_not_equal_to_given_datetime_with_minute_ignored() {
+  public void should_fail_if_actual_is_not_equal_to_given_datetime_with_second_ignored() {
     try {
-      assertThat(refDatetime).isEqualToIgnoringMinutes(refDatetime.minusMinutes(1));
+      assertThat(refDatetime).isEqualToIgnoringSeconds(refDatetime.plusMinutes(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
-              "\nExpecting:\n  <2000-01-01T23:00Z>\nto have same year, month, day and hour as:\n  <2000-01-01T22:59Z>\nbut had not.");
+              "\nExpecting:\n  <2000-01-01T23:51Z>\nto have same year, month, day, hour and minute as:\n  <2000-01-01T23:52Z>\nbut had not.");
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();
   }
 
   @Test
-  public void should_fail_as_minutes_fields_are_different_even_if_time_difference_is_less_than_a_minute() {
+  public void should_fail_as_seconds_fields_are_different_even_if_time_difference_is_less_than_a_second() {
     try {
-      assertThat(refDatetime).isEqualToIgnoringMinutes(refDatetime.minusNanos(1));
+      assertThat(refDatetime).isEqualToIgnoringSeconds(refDatetime.minusNanos(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
-              "\nExpecting:\n  <2000-01-01T23:00Z>\nto have same year, month, day and hour as:\n  <2000-01-01T22:59:59.999999999Z>\nbut had not.");
+              "\nExpecting:\n  <2000-01-01T23:51Z>\nto have same year, month, day, hour and minute as:\n  <2000-01-01T23:50:59.999999999Z>\nbut had not.");
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();
@@ -63,13 +63,13 @@ public class ZonedDateTimeAssert_isEqualToIgnoringMinutes_Test extends JodaTimeB
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
     ZonedDateTime actual = null;
-    assertThat(actual).isEqualToIgnoringMinutes(ZonedDateTime.now());
+    assertThat(actual).isEqualToIgnoringSeconds(ZonedDateTime.now());
   }
 
   @Test
   public void should_throw_error_if_given_datetime_is_null() {
     expectIllegalArgumentException(NULL_DATE_TIME_PARAMETER_MESSAGE);
-    assertThat(refDatetime).isEqualToIgnoringMinutes(null);
+    assertThat(refDatetime).isEqualToIgnoringSeconds(null);
   }
 
 }

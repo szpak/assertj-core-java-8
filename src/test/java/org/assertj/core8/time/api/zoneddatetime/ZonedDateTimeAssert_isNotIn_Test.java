@@ -10,7 +10,7 @@
  *
  * Copyright 2012-2013 the original author or authors.
  */
-package org.assertj.core8.time.api.datetime;
+package org.assertj.core8.time.api.zoneddatetime;
 
 import org.junit.Test;
 
