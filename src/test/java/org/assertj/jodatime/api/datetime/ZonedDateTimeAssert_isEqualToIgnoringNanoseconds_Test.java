@@ -24,26 +24,24 @@ import org.junit.Test;
 
 import java.time.ZonedDateTime;
 
-//TODO: Change to nanoseconds
-@Ignore
-public class ZonedDateTimeAssert_isEqualToIgnoringMilliseconds_Test extends JodaTimeBaseTest {
+public class ZonedDateTimeAssert_isEqualToIgnoringNanoseconds_Test extends JodaTimeBaseTest {
 
   private final ZonedDateTime refDatetime = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 0, UTC);
 
   @Test
-  public void should_pass_if_actual_is_equal_to_other_ignoring_millisecond_fields() {
-    assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.withNano(55));
-    assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.plusNanos(1));
+  public void should_pass_if_actual_is_equal_to_other_ignoring_nanosecond_fields() {
+    assertThat(refDatetime).isEqualToIgnoringNanos(refDatetime.withNano(55));
+    assertThat(refDatetime).isEqualToIgnoringNanos(refDatetime.plusNanos(1));
   }
 
   @Test
-  public void should_fail_if_actual_is_not_equal_to_given_datetime_with_milliseconds_ignored() {
+  public void should_fail_if_actual_is_not_equal_to_given_datetime_with_nanoseconds_ignored() {
     try {
-      assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.plusSeconds(1));
+      assertThat(refDatetime).isEqualToIgnoringNanos(refDatetime.plusSeconds(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
-              "\nExpecting:\n  <2000-01-01T00:00:01.000Z>\nto have same year, month, day, hour, minute and second as:\n  <2000-01-01T00:00:02.000Z>\nbut had not.");
+              "\nExpecting:\n  <2000-01-01T00:00:01Z>\nto have same year, month, day, hour, minute and second as:\n  <2000-01-01T00:00:02Z>\nbut had not.");
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();
@@ -52,11 +50,11 @@ public class ZonedDateTimeAssert_isEqualToIgnoringMilliseconds_Test extends Joda
   @Test
   public void should_fail_as_seconds_fields_are_different_even_if_time_difference_is_less_than_a_second() {
     try {
-      assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.minusNanos(1));
+      assertThat(refDatetime).isEqualToIgnoringNanos(refDatetime.minusNanos(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
-              "\nExpecting:\n  <2000-01-01T00:00:01.000Z>\nto have same year, month, day, hour, minute and second as:\n  <2000-01-01T00:00:00.999Z>\nbut had not.");
+              "\nExpecting:\n  <2000-01-01T00:00:01Z>\nto have same year, month, day, hour, minute and second as:\n  <2000-01-01T00:00:00.999999999Z>\nbut had not.");
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();
@@ -66,13 +64,13 @@ public class ZonedDateTimeAssert_isEqualToIgnoringMilliseconds_Test extends Joda
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
     ZonedDateTime actual = null;
-    assertThat(actual).isEqualToIgnoringMillis(ZonedDateTime.now());
+    assertThat(actual).isEqualToIgnoringNanos(ZonedDateTime.now());
   }
 
   @Test
   public void should_throw_error_if_given_datetime_is_null() {
     expectIllegalArgumentException(NULL_DATE_TIME_PARAMETER_MESSAGE);
-    assertThat(refDatetime).isEqualToIgnoringMillis(null);
+    assertThat(refDatetime).isEqualToIgnoringNanos(null);
   }
 
 }

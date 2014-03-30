@@ -24,7 +24,7 @@ import static org.assertj.jodatime.error.ShouldBeAfterOrEqualsTo.shouldBeAfterOr
 import static org.assertj.jodatime.error.ShouldBeBefore.shouldBeBefore;
 import static org.assertj.jodatime.error.ShouldBeBeforeOrEqualsTo.shouldBeBeforeOrEqualsTo;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringHours.shouldBeEqualIgnoringHours;
-import static org.assertj.jodatime.error.ShouldBeEqualIgnoringMillis.shouldBeEqualIgnoringMillis;
+import static org.assertj.jodatime.error.ShouldBeEqualIgnoringNanos.shouldBeEqualIgnoringNanos;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringMinutes.shouldBeEqualIgnoringMinutes;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringSeconds.shouldBeEqualIgnoringSeconds;
 
@@ -286,26 +286,25 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * // successfull assertions
    * ZonedDateTime dateTime1 = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 0);
    * ZonedDateTime dateTime2 = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 456);
-   * assertThat(dateTime1).isEqualToIgnoringMillis(dateTime2);
+   * assertThat(dateTime1).isEqualToIgnoringNanos(dateTime2);
    *
    * // failing assertions (even if time difference is only 1ms)
    * ZonedDateTime dateTimeA = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 0);
    * ZonedDateTime dateTimeB = ZonedDateTime.of(2000, 1, 1, 0, 0, 0, 999999999);
-   * assertThat(dateTimeA).isEqualToIgnoringMillis(dateTimeB);
+   * assertThat(dateTimeA).isEqualToIgnoringNanos(dateTimeB);
    * </pre>
    *
    * @param other the given {@link ZonedDateTime}.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal with milliseconds ignored.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal with nanoseconds ignored.
    */
-  //TODO: Rename
-  public ZonedDateTimeAssert isEqualToIgnoringMillis(ZonedDateTime other) {
+  public ZonedDateTimeAssert isEqualToIgnoringNanos(ZonedDateTime other) {
     Objects.instance().assertNotNull(info, actual);
     assertDateTimeParameterIsNotNull(other);
-    if (!areEqualIgnoringMillis(actual, other.withZoneSameInstant(actual.getZone()))) {
-      throw Failures.instance().failure(info, shouldBeEqualIgnoringMillis(actual, other));
+    if (!areEqualIgnoringNanos(actual, other.withZoneSameInstant(actual.getZone()))) {
+      throw Failures.instance().failure(info, shouldBeEqualIgnoringNanos(actual, other));
     }
     return this;
   }
@@ -340,7 +339,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * @return this assertion object.
    * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal with second and millisecond fields
+   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal with second and nanosecond fields
    *           ignored.
    */
   public ZonedDateTimeAssert isEqualToIgnoringSeconds(ZonedDateTime other) {
@@ -354,7 +353,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
 
   /**
    * Verifies that actual and given {@code ZonedDateTime} have same year, month, day and hour fields (minute, second and
-   * millisecond fields are ignored in comparison).
+   * nanosecond fields are ignored in comparison).
    * <p>
    * Note that given {@link ZonedDateTime} is converted in the actual's {@link java.time.ZoneId} before comparison.
    * <p>
@@ -382,7 +381,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * @return this assertion object.
    * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal ignoring minute, second and millisecond
+   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal ignoring minute, second and nanosecond
    *           fields.
    */
   public ZonedDateTimeAssert isEqualToIgnoringMinutes(ZonedDateTime other) {
@@ -396,7 +395,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
 
   /**
    * Verifies that actual and given {@code ZonedDateTime} have same year, month and day fields (hour, minute, second and
-   * millisecond fields are ignored in comparison).
+   * nanosecond fields are ignored in comparison).
    * <p>
    * Note that given {@link ZonedDateTime} is converted in the actual's {@link java.time.ZoneId} before comparison.
    * <p>
@@ -424,7 +423,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * @return this assertion object.
    * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal with second and millisecond fields
+   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal with second and nanosecond fields
    *           ignored.
    */
   public ZonedDateTimeAssert isEqualToIgnoringHours(ZonedDateTime other) {
@@ -694,7 +693,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * @return true if both datetime are in the same year, month and day of month, hour, minute and second, false
    *         otherwise.
    */
-  private static boolean areEqualIgnoringMillis(ZonedDateTime actual, ZonedDateTime other) {
+  private static boolean areEqualIgnoringNanos(ZonedDateTime actual, ZonedDateTime other) {
     return areEqualIgnoringSeconds(actual, other) && actual.getSecond() == other.getSecond();
   }
 

@@ -17,7 +17,7 @@ import static org.assertj.jodatime.error.ShouldBeAfterOrEqualsTo.shouldBeAfterOr
 import static org.assertj.jodatime.error.ShouldBeBefore.shouldBeBefore;
 import static org.assertj.jodatime.error.ShouldBeBeforeOrEqualsTo.shouldBeBeforeOrEqualsTo;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringHours.shouldBeEqualIgnoringHours;
-import static org.assertj.jodatime.error.ShouldBeEqualIgnoringMillis.shouldBeEqualIgnoringMillis;
+import static org.assertj.jodatime.error.ShouldBeEqualIgnoringNanos.shouldBeEqualIgnoringNanos;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringMinutes.shouldBeEqualIgnoringMinutes;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringSeconds.shouldBeEqualIgnoringSeconds;
 
@@ -414,25 +414,24 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * // successfull assertions
    * LocalDateTime localDateTime1 = LocalDateTime.of(2000, 1, 1, 0, 0, 1, 0);
    * LocalDateTime localDateTime2 = LocalDateTime.of(2000, 1, 1, 0, 0, 1, 456);
-   * assertThat(localDateTime1).isEqualToIgnoringMillis(localDateTime2);
+   * assertThat(localDateTime1).isEqualToIgnoringNanos(localDateTime2);
    * 
    * // failing assertions (even if time difference is only 1ms)
    * LocalDateTime localDateTimeA = LocalDateTime.of(2000, 1, 1, 0, 0, 1, 0);
    * LocalDateTime localDateTimeB = LocalDateTime.of(2000, 1, 1, 0, 0, 0, 999999999);
-   * assertThat(localDateTimeA).isEqualToIgnoringMillis(localDateTimeB);
+   * assertThat(localDateTimeA).isEqualToIgnoringNanos(localDateTimeB);
    * </pre>
    * @param other the given {@link LocalDateTime}.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code LocalDateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code LocalDateTime} is are not equal with milliseconds ignored.
+   * @throws AssertionError if the actual {@code LocalDateTime} is are not equal with nanoseconds ignored.
    */
-  //TODO: Rename
-  public LocalDateTimeAssert isEqualToIgnoringMillis(LocalDateTime other) {
+  public LocalDateTimeAssert isEqualToIgnoringNanos(LocalDateTime other) {
     Objects.instance().assertNotNull(info, actual);
     assertLocalDateTimeParameterIsNotNull(other);
-    if (!areEqualIgnoringMillis(actual, other)) {
-      throw Failures.instance().failure(info, shouldBeEqualIgnoringMillis(actual, other));
+    if (!areEqualIgnoringNanos(actual, other)) {
+      throw Failures.instance().failure(info, shouldBeEqualIgnoringNanos(actual, other));
     }
     return this;
   }
@@ -505,7 +504,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * @return this assertion object.
    * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code LocalDateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code LocalDateTime} is are not equal ignoring minute, second and millisecond
+   * @throws AssertionError if the actual {@code LocalDateTime} is are not equal ignoring minute, second and nanosecond
    *           fields.
    */
   public LocalDateTimeAssert isEqualToIgnoringMinutes(LocalDateTime other) {
@@ -566,7 +565,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * @return true if both datetime are in the same year, month and day of month, hour, minute and second, false
    *         otherwise.
    */
-  private static boolean areEqualIgnoringMillis(LocalDateTime actual, LocalDateTime other) {
+  private static boolean areEqualIgnoringNanos(LocalDateTime actual, LocalDateTime other) {
     return areEqualIgnoringSeconds(actual, other) && actual.getSecond() == other.getSecond();
   }
 

@@ -23,20 +23,20 @@ import java.time.ZonedDateTime;
  * 
  * @author Joel Costigliola
  */
-public class ShouldBeEqualIgnoringMillis extends BasicErrorMessageFactory {
+public class ShouldBeEqualIgnoringNanos extends BasicErrorMessageFactory {
 
   /**
-   * Creates a new </code>{@link ShouldBeEqualIgnoringMillis}</code>.
+   * Creates a new </code>{@link ShouldBeEqualIgnoringNanos}</code>.
    * 
    * @param actual the actual value in the failed assertion.
    * @param other the value used in the failed assertion to compare the actual value to.
    * @return the created {@code ErrorMessageFactory}.
    */
-  public static ErrorMessageFactory shouldBeEqualIgnoringMillis(Object actual, Object other) {
-    return new ShouldBeEqualIgnoringMillis(actual, other);
+  public static ErrorMessageFactory shouldBeEqualIgnoringNanos(Object actual, Object other) {
+    return new ShouldBeEqualIgnoringNanos(actual, other);
   }
 
-  private ShouldBeEqualIgnoringMillis(Object actual, Object other) {
+  private ShouldBeEqualIgnoringNanos(Object actual, Object other) {
     super("\nExpecting:\n  <%s>\nto have same year, month, day, hour, minute and second as:\n  <%s>\nbut had not.",
         actual, other);
   }
