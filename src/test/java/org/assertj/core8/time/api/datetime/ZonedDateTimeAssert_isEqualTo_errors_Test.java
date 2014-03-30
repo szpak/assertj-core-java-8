@@ -25,7 +25,7 @@ import org.junit.runner.RunWith;
 import java.time.ZonedDateTime;
 
 /**
- * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)
+ * Only test String based assertion (tests with {@link ZonedDateTime} are already defined in assertj-core)
  * 
  * @author Joel Costigliola
  * @author Marcin Zajączkowski
