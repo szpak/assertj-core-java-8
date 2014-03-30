@@ -12,7 +12,6 @@
  */
 package org.assertj.jodatime.api.datetime;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -26,7 +25,7 @@ import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
 /**
- * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)
+ * Only test String based assertion (tests with {@link ZonedDateTime} are already defined in assertj-core)
  *
  * @author Joel Costigliola
  * @author Marcin Zajączkowski
@@ -45,7 +44,8 @@ public class ZonedDateTimeAssert_isNotIn_errors_Test extends ZonedDateTimeAssert
   @Test
   public void test_isNotIn_assertion_error_message() {
     try {
-      assertThat(ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC)).isNotIn(ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC).toString(),
+      assertThat(ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC)).isNotIn(
+          ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, UTC).toString(),
           ZonedDateTime.of(2012, 1, 1, 3, 3, 3, 0, UTC).toString());
     } catch (AssertionError e) {
       assertThat(e).hasMessage(

@@ -15,8 +15,6 @@ package org.assertj.jodatime.api;
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.internal.Failures;
 import org.assertj.core.internal.Objects;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -31,7 +29,7 @@ import static org.assertj.jodatime.error.ShouldBeEqualIgnoringMinutes.shouldBeEq
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringSeconds.shouldBeEqualIgnoringSeconds;
 
 /**
- * Assertions fot Joda {@link DateTime} type.
+ * Assertions for {@link ZonedDateTime} type from new Date & Time API introduced in Java 8.
  *
  * @author Paweł Stawicki
  * @author Joel Costigliola
@@ -57,19 +55,19 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that the actual {@code DateTime} is <b>strictly</b> before the given one.
+   * Verifies that the actual {@code ZonedDateTime} is <b>strictly</b> before the given one.
    * <p>
    * Example :
    *
    * <pre>
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isBefore(new DateTime(&quot;2000-01-02&quot;));
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isBefore(ZonedDateTime.parse(&quot;2000-01-02&quot;));
    * </pre>
    *
-   * @param other the given {@link DateTime}.
+   * @param other the given {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is not strictly before the given one.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not strictly before the given one.
    */
   public ZonedDateTimeAssert isBefore(ZonedDateTime other) {
     Objects.instance().assertNotNull(info, actual);
@@ -81,27 +79,27 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Same assertion as {@link #isBefore(ZonedDateTime)} but the {@link ZonedDateTime} is built from given String, which must
-   * follow <a
-   * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * Same assertion as {@link #isBefore(ZonedDateTime)} but the {@link ZonedDateTime} is built from given String, which
+   * must follow <a
+   * href="http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME"
+   * >ISO date-time format</a> to allow calling {@link ZonedDateTime#parse(CharSequence, DateTimeFormatter)} method.
    * <p>
-   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of the
-   * {@link DateTime} to check..
+   * Note that the {@link ZonedDateTime} created from the given String is built in the {@link java.time.ZoneId} of the
+   * {@link ZonedDateTime} to check..
    * <p>
    * Example :
    *
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isBefore(&quot;2000-01-02&quot;);
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isBefore(&quot;2000-01-02&quot;);
    * </pre>
    *
-   * @param dateTimeAsString String representing a {@link DateTime}.
+   * @param dateTimeAsString String representing a {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link DateTime}.
-   * @throws AssertionError if the actual {@code DateTime} is not strictly before the {@link DateTime} built from given
-   *           String.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link ZonedDateTime}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not strictly before the {@link ZonedDateTime} built
+   *           from given String.
    */
   public ZonedDateTimeAssert isBefore(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
@@ -109,20 +107,21 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that the actual {@code DateTime} is before or equals to the given one.
+   * Verifies that the actual {@code ZonedDateTime} is before or equals to the given one.
    * <p>
    * Example :
    *
    * <pre>
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(new DateTime(&quot;2000-01-01&quot;))
-   *                                       .isBeforeOrEqualTo(new DateTime(&quot;2000-01-02&quot;));
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;))
+   *                                       .isBeforeOrEqualTo(ZonedDateTime.parse(&quot;2000-01-01&quot;))
+   *                                       .isBeforeOrEqualTo(ZonedDateTime.parse(&quot;2000-01-02&quot;));
    * </pre>
    *
-   * @param other the given {@link DateTime}.
+   * @param other the given {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is not before or equals to the given one.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZoneDateTime} is not before or equals to the given one.
    */
   public ZonedDateTimeAssert isBeforeOrEqualTo(ZonedDateTime other) {
     Objects.instance().assertNotNull(info, actual);
@@ -134,28 +133,28 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Same assertion as {@link #isBeforeOrEqualTo(DateTime)} but the {@link DateTime} is built from given String, which
-   * must follow <a
-   * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * Same assertion as {@link #isBeforeOrEqualTo(ZonedDateTime)} but the {@link ZonedDateTime} is built from given
+   * String, which must follow <a
+   * href="http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME"
+   * >ISO date-time format</a> to allow calling {@link ZonedDateTime#parse(CharSequence, DateTimeFormatter)} method.
    * <p>
-   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of the
-   * {@link DateTime} to check..
+   * Note that the {@link ZonedDateTime} created from the given String is built in the {@link java.time.ZoneId} of the
+   * {@link ZonedDateTime} to check..
    * <p>
    * Example :
    *
    * <pre>
    * // use String in comparison to avoid conversion
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(&quot;2000-01-01&quot;)
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(&quot;2000-01-01&quot;)
    *                                       .isBeforeOrEqualTo(&quot;2000-01-02&quot;);
    * </pre>
    *
-   * @param dateTimeAsString String representing a {@link DateTime}.
+   * @param dateTimeAsString String representing a {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link DateTime}.
-   * @throws AssertionError if the actual {@code DateTime} is not before or equals to the {@link DateTime} built from
-   *           given String.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link ZonedDateTime}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not before or equals to the {@link ZonedDateTime}
+   *           built from given String.
    */
   public ZonedDateTimeAssert isBeforeOrEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
@@ -163,20 +162,21 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that the actual {@code DateTime} is after or equals to the given one.
+   * Verifies that the actual {@code ZonedDateTime} is after or equals to the given one.
    * <p>
    * Example :
    *
    * <pre>
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isAfterOrEqualTo(new DateTime(&quot;2000-01-01&quot;))
-   *                                       .isAfterOrEqualTo(new DateTime(&quot;1999-12-31&quot;));
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;))
+   *                                       .isAfterOrEqualTo(ZonedDateTime.parse(&quot;2000-01-01&quot;))
+   *                                       .isAfterOrEqualTo(ZonedDateTime.parse(&quot;1999-12-31&quot;));
    * </pre>
    *
-   * @param other the given {@link DateTime}.
+   * @param other the given {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is not after or equals to the given one.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not after or equals to the given one.
    */
   public ZonedDateTimeAssert isAfterOrEqualTo(ZonedDateTime other) {
     Objects.instance().assertNotNull(info, actual);
@@ -188,28 +188,28 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Same assertion as {@link #isAfterOrEqualTo(DateTime)} but the {@link DateTime} is built from given String, which
-   * must follow <a
-   * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * Same assertion as {@link #isAfterOrEqualTo(ZonedDateTime)} but the {@link ZonedDateTime} is built from given
+   * String, which must follow <a
+   * href="http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME"
+   * >ISO date-time format</a> to allow calling {@link ZonedDateTime#parse(CharSequence, DateTimeFormatter)} method.
    * <p>
-   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of the
-   * {@link DateTime} to check.
+   * Note that the {@link ZonedDateTime} created from the given String is built in the {@link java.time.ZoneId} of the
+   * {@link ZonedDateTime} to check.
    * <p>
    * Example :
    *
    * <pre>
    * // use String in comparison to avoid conversion
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isAfterOrEqualTo(&quot;2000-01-01&quot;)
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isAfterOrEqualTo(&quot;2000-01-01&quot;)
    *                                       .isAfterOrEqualTo(&quot;1999-12-31&quot;);
    * </pre>
    *
-   * @param dateTimeAsString String representing a {@link DateTime}.
+   * @param dateTimeAsString String representing a {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link DateTime}.
-   * @throws AssertionError if the actual {@code DateTime} is not after or equals to the {@link DateTime} built from
-   *           given String.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link ZonedDateTime}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not after or equals to the {@link ZonedDateTime}
+   *           built from given String.
    */
   public ZonedDateTimeAssert isAfterOrEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
@@ -217,19 +217,19 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that the actual {@code DateTime} is <b>strictly</b> after the given one.
+   * Verifies that the actual {@code ZonedDateTime} is <b>strictly</b> after the given one.
    * <p>
    * Example :
    *
    * <pre>
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isAfter(new DateTime(&quot;1999-12-31&quot;));
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isAfter(ZonedDateTime.parse(&quot;1999-12-31&quot;));
    * </pre>
    *
-   * @param other the given {@link DateTime}.
+   * @param other the given {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is not strictly after the given one.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not strictly after the given one.
    */
   public ZonedDateTimeAssert isAfter(ZonedDateTime other) {
     Objects.instance().assertNotNull(info, actual);
@@ -241,26 +241,27 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Same assertion as {@link #isAfter(DateTime)} but the {@link DateTime} is built from given String, which must follow
-   * <a href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * Same assertion as {@link #isAfter(ZonedDateTime)} but the {@link ZonedDateTime} is built from given String, which
+   * must follow <a
+   * href="http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME"
+   * >ISO date-time format</a> to allow calling {@link ZonedDateTime#parse(CharSequence, DateTimeFormatter)} method.
    * <p>
-   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of the
-   * {@link DateTime} to check.
+   * Note that the {@link ZonedDateTime} created from the given String is built in the {@link java.time.ZoneId} of the
+   * {@link ZonedDateTime} to check.
    * <p>
    * Example :
    *
    * <pre>
    * // use String in comparison to avoid conversion
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isAfter(&quot;1999-12-31&quot;);
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isAfter(&quot;1999-12-31&quot;);
    * </pre>
    *
-   * @param dateTimeAsString String representing a {@link DateTime}.
+   * @param dateTimeAsString String representing a {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link DateTime}.
-   * @throws AssertionError if the actual {@code DateTime} is not strictly after the {@link DateTime} built from given
-   *           String.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link ZonedDateTime}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not strictly after the {@link ZonedDateTime} built
+   *           from given String.
    */
   public ZonedDateTimeAssert isAfter(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
@@ -268,37 +269,38 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that actual and given {@code DateTime} have same year, month, day, hour, minute and second fields,
-   * (millisecond fields are ignored in comparison).
+   * Verifies that actual and given {@code ZonedDateTime} have same year, month, day, hour, minute and second fields,
+   * (nanosecond fields are ignored in comparison).
    * <p>
-   * Note that given {@link DateTime} is converted in the actual's {@link DateTimeZone} before comparison.
+   * Note that given {@link ZonedDateTime} is converted in the actual's {@link java.time.ZoneId} before comparison.
    * <p>
-   * Assertion can fail with dateTimes in same chronological millisecond time window, e.g :
+   * Assertion can fail with dateTimes in same chronological nanosecond time window, e.g :
    * <p>
-   * 2000-01-01T00:00:<b>01.000</b> and 2000-01-01T00:00:<b>00.999</b>.
+   * 2000-01-01T00:00:<b>01.000000000</b> and 2000-01-01T00:00:<b>00.999999999</b>.
    * <p>
-   * Assertion fails as second fields differ even if time difference is only 1ms.
+   * Assertion fails as second fields differ even if time difference is only 1ns.
    * <p>
    * Code example :
    *
    * <pre>
    * // successfull assertions
-   * DateTime dateTime1 = new DateTime(2000, 1, 1, 0, 0, 1, 0);
-   * DateTime dateTime2 = new DateTime(2000, 1, 1, 0, 0, 1, 456);
+   * ZonedDateTime dateTime1 = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 0);
+   * ZonedDateTime dateTime2 = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 456);
    * assertThat(dateTime1).isEqualToIgnoringMillis(dateTime2);
    *
    * // failing assertions (even if time difference is only 1ms)
-   * DateTime dateTimeA = new DateTime(2000, 1, 1, 0, 0, 1, 0);
-   * DateTime dateTimeB = new DateTime(2000, 1, 1, 0, 0, 0, 999);
+   * ZonedDateTime dateTimeA = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 0);
+   * ZonedDateTime dateTimeB = ZonedDateTime.of(2000, 1, 1, 0, 0, 0, 999999999);
    * assertThat(dateTimeA).isEqualToIgnoringMillis(dateTimeB);
    * </pre>
    *
-   * @param other the given {@link DateTime}.
+   * @param other the given {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is are not equal with milliseconds ignored.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal with milliseconds ignored.
    */
+  //TODO: Rename
   public ZonedDateTimeAssert isEqualToIgnoringMillis(ZonedDateTime other) {
     Objects.instance().assertNotNull(info, actual);
     assertDateTimeParameterIsNotNull(other);
@@ -309,36 +311,37 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that actual and given {@link DateTime} have same year, month, day, hour and minute fields (second and
-   * millisecond fields are ignored in comparison).
+   * Verifies that actual and given {@link ZonedDateTime} have same year, month, day, hour and minute fields (second and
+   * nanosecond fields are ignored in comparison).
    * <p>
-   * Note that given {@link DateTime} is converted in the actual's {@link DateTimeZone} before comparison.
+   * Note that given {@link ZonedDateTime} is converted in the actual's {@link java.time.ZoneId} before comparison.
    * <p>
-   * Assertion can fail with DateTimes in same chronological second time window, e.g :
+   * Assertion can fail with ZonedDateTimes in same chronological second time window, e.g :
    * <p>
    * 2000-01-01T00:<b>01:00</b>.000 and 2000-01-01T00:<b>00:59</b>.000.
    * <p>
-   * Assertion fails as minute fields differ even if time difference is only 1s.
+   * Assertion fails as minute fields differ even if time difference is only 1ns.
    * <p>
    * Code example :
    *
    * <pre>
    * // successfull assertions
-   * DateTime dateTime1 = new DateTime(2000, 1, 1, 23, 50, 0, 0);
-   * DateTime dateTime2 = new DateTime(2000, 1, 1, 23, 50, 10, 456);
+   * ZonedDateTime dateTime1 = ZonedDateTime.of(2000, 1, 1, 23, 50, 0, 0);
+   * ZonedDateTime dateTime2 = ZonedDateTime.of(2000, 1, 1, 23, 50, 10, 456);
    * assertThat(dateTime1).isEqualToIgnoringSeconds(dateTime2);
    *
-   * // failing assertions (even if time difference is only 1ms)
-   * DateTime dateTimeA = new DateTime(2000, 1, 1, 23, 50, 00, 000);
-   * DateTime dateTimeB = new DateTime(2000, 1, 1, 23, 49, 59, 999);
+   * // failing assertions (even if time difference is only 1ns)
+   * ZonedDateTime dateTimeA = ZonedDateTime.of(2000, 1, 1, 23, 50, 00, 0);
+   * ZonedDateTime dateTimeB = ZonedDateTime.of(2000, 1, 1, 23, 49, 59, 999999999);
    * assertThat(dateTimeA).isEqualToIgnoringSeconds(dateTimeB);
    * </pre>
    *
-   * @param other the given {@link DateTime}.
+   * @param other the given {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is are not equal with second and millisecond fields ignored.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal with second and millisecond fields
+   *           ignored.
    */
   public ZonedDateTimeAssert isEqualToIgnoringSeconds(ZonedDateTime other) {
     Objects.instance().assertNotNull(info, actual);
@@ -350,10 +353,10 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that actual and given {@code DateTime} have same year, month, day and hour fields (minute, second and
+   * Verifies that actual and given {@code ZonedDateTime} have same year, month, day and hour fields (minute, second and
    * millisecond fields are ignored in comparison).
    * <p>
-   * Note that given {@link DateTime} is converted in the actual's {@link DateTimeZone} before comparison.
+   * Note that given {@link ZonedDateTime} is converted in the actual's {@link java.time.ZoneId} before comparison.
    * <p>
    * Assertion can fail with dateTimes in same chronological second time window, e.g :
    * <p>
@@ -365,21 +368,21 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    *
    * <pre>
    * // successfull assertions
-   * DateTime dateTime1 = new DateTime(2000, 1, 1, 23, 50, 0, 0);
-   * DateTime dateTime2 = new DateTime(2000, 1, 1, 23, 00, 2, 7);
+   * ZonedDateTime dateTime1 = ZonedDateTime.of(2000, 1, 1, 23, 50, 0, 0);
+   * ZonedDateTime dateTime2 = ZonedDateTime.of(2000, 1, 1, 23, 00, 2, 7);
    * assertThat(dateTime1).isEqualToIgnoringMinutes(dateTime2);
    *
    * // failing assertions (even if time difference is only 1ms)
-   * DateTime dateTimeA = new DateTime(2000, 1, 1, 01, 00, 00, 000);
-   * DateTime dateTimeB = new DateTime(2000, 1, 1, 00, 59, 59, 999);
+   * ZonedDateTime dateTimeA = ZonedDateTime.of(2000, 1, 1, 01, 00, 00, 000);
+   * ZonedDateTime dateTimeB = ZonedDateTime.of(2000, 1, 1, 00, 59, 59, 999);
    * assertThat(dateTimeA).isEqualToIgnoringMinutes(dateTimeB);
    * </pre>
    *
-   * @param other the given {@link DateTime}.
+   * @param other the given {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is are not equal ignoring minute, second and millisecond
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal ignoring minute, second and millisecond
    *           fields.
    */
   public ZonedDateTimeAssert isEqualToIgnoringMinutes(ZonedDateTime other) {
@@ -392,10 +395,10 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that actual and given {@code DateTime} have same year, month and day fields (hour, minute, second and
+   * Verifies that actual and given {@code ZonedDateTime} have same year, month and day fields (hour, minute, second and
    * millisecond fields are ignored in comparison).
    * <p>
-   * Note that given {@link DateTime} is converted in the actual's {@link DateTimeZone} before comparison.
+   * Note that given {@link ZonedDateTime} is converted in the actual's {@link java.time.ZoneId} before comparison.
    * <p>
    * Assertion can fail with dateTimes in same chronological minute time window, e.g :
    * <p>
@@ -407,21 +410,22 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    *
    * <pre>
    * // successfull assertions
-   * DateTime dateTime1 = new DateTime(2000, 1, 1, 23, 59, 59, 999);
-   * DateTime dateTime2 = new DateTime(2000, 1, 1, 00, 00, 00, 000);
+   * ZonedDateTime dateTime1 = ZonedDateTime.of(2000, 1, 1, 23, 59, 59, 999);
+   * ZonedDateTime dateTime2 = ZonedDateTime.of(2000, 1, 1, 00, 00, 00, 000);
    * assertThat(dateTime1).isEqualToIgnoringHours(dateTime2);
    *
    * // failing assertions (even if time difference is only 1ms)
-   * DateTime dateTimeA = new DateTime(2000, 1, 2, 00, 00, 00, 000);
-   * DateTime dateTimeB = new DateTime(2000, 1, 1, 23, 59, 59, 999);
+   * ZonedDateTime dateTimeA = ZonedDateTime.of(2000, 1, 2, 00, 00, 00, 000);
+   * ZonedDateTime dateTimeB = ZonedDateTime.of(2000, 1, 1, 23, 59, 59, 999);
    * assertThat(dateTimeA).isEqualToIgnoringHours(dateTimeB);
    * </pre>
    *
-   * @param other the given {@link DateTime}.
+   * @param other the given {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is are not equal with second and millisecond fields ignored.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is are not equal with second and millisecond fields
+   *           ignored.
    */
   public ZonedDateTimeAssert isEqualToIgnoringHours(ZonedDateTime other) {
     Objects.instance().assertNotNull(info, actual);
@@ -433,45 +437,47 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that the actual {@link DateTime} is equal to the given one <b>in the actual's {@link DateTimeZone}</b>.
+   * Verifies that the actual {@link ZonedDateTime} is equal to the given one <b>in the actual's
+   * {@link java.time.ZoneId}</b>.
    * <p>
    * Example :
    *
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isEqualTo(new DateTime(&quot;2000-01-01&quot;));
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isEqualTo(ZonedDateTime.parse(&quot;2000-01-01&quot;));
    * </pre>
    *
    * @param expected the given value to compare the actual value to.
    * @return {@code this} assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is not equal to the {@link DateTime} in the actual DateTime's
-   *           DateTimeZone.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not equal to the {@link ZonedDateTime} in the actual
+   *           ZonedDateTime's java.time.ZoneId.
    */
   public ZonedDateTimeAssert isEqualTo(ZonedDateTime expected) {
     return super.isEqualTo(expected.withZoneSameInstant(actual.getZone()));
   }
 
   /**
-   * Same assertion as {@link #isEqualTo(DateTime)} but the {@link DateTime} is built from given String, which must
-   * follow <a
-   * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * Same assertion as {@link #isEqualTo(ZonedDateTime)} but the {@link ZonedDateTime} is built from given String,
+   * which must follow <a
+   * href="http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME"
+   * >ISO date-time format</a> to allow calling {@link ZonedDateTime#parse(CharSequence, DateTimeFormatter)} method.
    * <p>
-   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of the
-   * {@link DateTime} to check.
+   * Note that the {@link ZonedDateTime} created from the given String is built in the {@link java.time.ZoneId} of the
+   * {@link ZonedDateTime} to check.
    * <p>
    * Example :
    *
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isEqualTo(&quot;2000-01-01&quot;);
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isEqualTo(&quot;2000-01-01&quot;);
    * </pre>
    *
-   * @param dateTimeAsString String representing a {@link DateTime}.
+   * @param dateTimeAsString String representing a {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link DateTime}.
-   * @throws AssertionError if the actual {@code DateTime} is not equal to the {@link DateTime} built from given String.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link ZonedDateTime}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not equal to the {@link ZonedDateTime} built from
+   *           given String.
    */
   public ZonedDateTimeAssert isEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
@@ -479,44 +485,45 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that the actual value is not equal to the given one <b>in the actual DateTime's DateTimeZone</b>.
+   * Verifies that the actual value is not equal to the given one <b>in the actual ZonedDateTime's java.time.ZoneId</b>.
    * <p>
    * Example :
    *
    * <pre>
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isNotEqualTo(new DateTime(&quot;2000-01-15&quot;));
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isNotEqualTo(ZonedDateTime.parse(&quot;2000-01-15&quot;));
    * </pre>
    *
    * @param expected the given value to compare the actual value to.
    * @return {@code this} assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is equal to the {@link DateTime} in the actual DateTime's
-   *           DateTimeZone.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is equal to the {@link ZonedDateTime} in the actual
+   *           ZonedDateTime's java.time.ZoneId.
    */
   public ZonedDateTimeAssert isNotEqualTo(ZonedDateTime expected) {
     return super.isNotEqualTo(expected.withZoneSameInstant(actual.getZone()));
   }
 
   /**
-   * Same assertion as {@link #isNotEqualTo(DateTime)} but the {@link DateTime} is built from given String, which must
-   * follow <a
-   * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * Same assertion as {@link #isNotEqualTo(ZonedDateTime)} but the {@link ZonedDateTime} is built from given String,
+   * which must follow <a
+   * href="http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME"
+   * >ISO date-time format</a> to allow calling {@link ZonedDateTime#parse(CharSequence, DateTimeFormatter)} method.
    * <p>
-   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of the
-   * {@link DateTime} to check.. {@link DateTime}.
+   * Note that the {@link ZonedDateTime} created from the given String is built in the {@link java.time.ZoneId} of the
+   * {@link ZonedDateTime} to check.. {@link ZonedDateTime}.
    * <p>
    * Example :
    *
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isNotEqualTo(&quot;2000-01-15&quot;);
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isNotEqualTo(&quot;2000-01-15&quot;);
    * </pre>
    *
-   * @param dateTimeAsString String representing a {@link DateTime}.
+   * @param dateTimeAsString String representing a {@link ZonedDateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link DateTime}.
-   * @throws AssertionError if the actual {@code DateTime} is equal to the {@link DateTime} built from given String.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link ZonedDateTime}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is equal to the {@link ZonedDateTime} built from given
+   *           String.
    */
   public ZonedDateTimeAssert isNotEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
@@ -524,45 +531,47 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that the actual {@link DateTime} is equal to one of the given {@link DateTime} <b>in the actual DateTime's
-   * {@link DateTimeZone}</b>.
+   * Verifies that the actual {@link ZonedDateTime} is equal to one of the given {@link ZonedDateTime} <b>in the actual
+   * ZonedDateTime's {@link java.time.ZoneId}</b>.
    * <p>
    * Example :
    *
    * <pre>
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isIn(new DateTime(&quot;1999-12-31&quot;), new DateTime(&quot;2000-01-01&quot;));
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;))
+   *           .isIn(ZonedDateTime.parse(&quot;1999-12-31&quot;), ZonedDateTime.parse(&quot;2000-01-01&quot;));
    * </pre>
    *
-   * @param expected the given {@link DateTime}s to compare the actual value to.
+   * @param expected the given {@link ZonedDateTime}s to compare the actual value to.
    * @return {@code this} assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is not in the given {@link DateTime}s.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not in the given {@link ZonedDateTime}s.
    */
   public ZonedDateTimeAssert isIn(ZonedDateTime... expected) {
     return super.isIn((Object[]) changeToActualTimeZone(expected));
   }
 
   /**
-   * Same assertion as {@link #isIn(DateTime...)} but the {@link DateTime} are built from given String, which must
-   * follow <a
-   * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * Same assertion as {@link #isIn(ZonedDateTime...)} but the {@link ZonedDateTime} are built from given String, which
+   * must follow <a
+   * href="http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME"
+   * >ISO date-time format</a> to allow calling {@link ZonedDateTime#parse(CharSequence, DateTimeFormatter)} method.
    * <p>
-   * Note that the {@link DateTime}s created from the given Strings are built in the {@link DateTimeZone} of the
-   * {@link DateTime} to check..
+   * Note that the {@link ZonedDateTime}s created from the given Strings are built in the {@link java.time.ZoneId} of
+   * the {@link ZonedDateTime} to check..
    * <p>
    * Example :
    *
    * <pre>
    * // use String based representation of LocalDateTime
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isIn(&quot;1999-12-31&quot;, &quot;2000-01-01&quot;);
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isIn(&quot;1999-12-31&quot;, &quot;2000-01-01&quot;);
    * </pre>
    *
-   * @param dateTimesAsString String array representing {@link DateTime}s.
+   * @param dateTimesAsString String array representing {@link ZonedDateTime}s.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link DateTime}.
-   * @throws AssertionError if the actual {@code DateTime} is not in the {@link DateTime}s built from given Strings.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link ZonedDateTime}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not in the {@link ZonedDateTime}s built from given
+   *           Strings.
    */
   public ZonedDateTimeAssert isIn(String... dateTimesAsString) {
     checkIsNotNullAndNotEmpty(dateTimesAsString);
@@ -570,45 +579,47 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Verifies that the actual {@link DateTime} is equal to one of the given {@link DateTime} <b>in the actual DateTime's
-   * {@link DateTimeZone}</b>.
+   * Verifies that the actual {@link ZonedDateTime} is equal to one of the given {@link ZonedDateTime} <b>in the actual
+   * ZonedDateTime's {@link java.time.ZoneId}</b>.
    * <p>
    * Example :
    *
    * <pre>
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isNotIn(new DateTime(&quot;1999-12-31&quot;), new DateTime(&quot;2000-01-02&quot;));
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;))
+   *          .isNotIn(ZonedDateTime.parse(&quot;1999-12-31&quot;), ZonedDateTime.parse(&quot;2000-01-02&quot;));
    * </pre>
    *
-   * @param expected the given {@link DateTime}s to compare the actual value to.
+   * @param expected the given {@link ZonedDateTime}s to compare the actual value to.
    * @return {@code this} assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is not in the given {@link DateTime}s.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not in the given {@link ZonedDateTime}s.
    */
   public ZonedDateTimeAssert isNotIn(ZonedDateTime... expected) {
     return super.isNotIn((Object[]) changeToActualTimeZone(expected));
   }
 
   /**
-   * Same assertion as {@link #isNotIn(org.joda.time.DateTime...)} but the {@link DateTime} is built from given String,
+   * Same assertion as {@link #isNotIn(ZonedDateTime...)} but the {@link ZonedDateTime} is built from given String,
    * which must follow <a
-   * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * href="http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME"
+   * >ISO date-time format</a> to allow calling {@link ZonedDateTime#parse(CharSequence, DateTimeFormatter)} method.
    * <p>
-   * Note that the {@link DateTime}s created from the given Strings are built in the {@link DateTimeZone} of the
-   * {@link DateTime} to check..
+   * Note that the {@link ZonedDateTime}s created from the given Strings are built in the {@link java.time.ZoneId} of
+   * the {@link ZonedDateTime} to check..
    * <p>
    * Example :
    *
    * <pre>
-   * // use String based representation of DateTime
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isNotIn(&quot;1999-12-31&quot;, &quot;2000-01-02&quot;);
+   * // use String based representation of ZonedDateTime
+   * assertThat(ZonedDateTime.parse(&quot;2000-01-01&quot;)).isNotIn(&quot;1999-12-31&quot;, &quot;2000-01-02&quot;);
    * </pre>
    *
-   * @param dateTimesAsString String array representing {@link DateTime}s.
+   * @param dateTimesAsString String array representing {@link ZonedDateTime}s.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link DateTime}.
-   * @throws AssertionError if the actual {@code DateTime} is not equal to the {@link DateTime} built from given String.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is {@code null}.
+   * @throws IllegalArgumentException if given String is null or can't be converted to a {@link ZonedDateTime}.
+   * @throws AssertionError if the actual {@code ZonedDateTime} is not equal to the {@link ZonedDateTime} built from
+   *            given String.
    */
   public ZonedDateTimeAssert isNotIn(String... dateTimesAsString) {
     checkIsNotNullAndNotEmpty(dateTimesAsString);
@@ -642,12 +653,17 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
     }
   }
 
+  private ZonedDateTime parseStringAsIsoDateTimeAndMoveToZoneSameActual(String dateTimeAsString) {
+    ZonedDateTime parsedDateTime = ZonedDateTime.parse(dateTimeAsString, DateTimeFormatter.ISO_DATE_TIME);
+    return parsedDateTime.withZoneSameInstant(actual.getZone());
+  }
+
   /**
-   * Check that the {@link DateTime} to compare actual {@link DateTime} to is not null, otherwise throws a
+   * Check that the {@link ZonedDateTime} to compare actual {@link ZonedDateTime} to is not null, otherwise throws a
    * {@link IllegalArgumentException} with an explicit message
    *
-   * @param dateTime the {@link DateTime} to check
-   * @throws {@link IllegalArgumentException} with an explicit message if the given {@link DateTime} is null
+   * @param dateTime the {@link ZonedDateTime} to check
+   * @throws {@link IllegalArgumentException} with an explicit message if the given {@link ZonedDateTime} is null
    */
   private static void assertDateTimeParameterIsNotNull(ZonedDateTime dateTime) {
     if (dateTime == null) {
@@ -656,16 +672,16 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
   }
 
   /**
-   * Check that the {@link DateTime} string representation to compare actual {@link DateTime} to is not null, otherwise
-   * throws a {@link IllegalArgumentException} with an explicit message
+   * Check that the {@link ZonedDateTime} string representation to compare actual {@link ZonedDateTime} to is not null,
+   * otherwise throws a {@link IllegalArgumentException} with an explicit message
    *
-   * @param dateTimeAsString String representing the DateTime to compare actual with
+   * @param dateTimeAsString String representing the ZonedDateTime to compare actual with
    * @throws {@link IllegalArgumentException} with an explicit message if the given {@link String} is null
    */
   private static void assertDateTimeAsStringParameterIsNotNull(String dateTimeAsString) {
     if (dateTimeAsString == null) {
       throw new IllegalArgumentException(
-                                         "The String representing the ZonedDateTime to compare actual with should not be null");
+          "The String representing the ZonedDateTime to compare actual with should not be null");
     }
   }
 
@@ -735,11 +751,5 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    */
   private static boolean haveSameYear(ZonedDateTime actual, ZonedDateTime other) {
     return actual.getYear() == other.getYear();
-  }
-
-  //TODO: Document
-  private ZonedDateTime parseStringAsIsoDateTimeAndMoveToZoneSameActual(String dateTimeAsString) {
-    ZonedDateTime parsedDateTime = ZonedDateTime.parse(dateTimeAsString, DateTimeFormatter.ISO_DATE_TIME);
-    return parsedDateTime.withZoneSameInstant(actual.getZone());
   }
 }

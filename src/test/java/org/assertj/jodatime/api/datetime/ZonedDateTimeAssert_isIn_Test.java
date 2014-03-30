@@ -13,7 +13,6 @@
 package org.assertj.jodatime.api.datetime;
 
 import static org.assertj.jodatime.api.Assertions.assertThat;
-import static org.joda.time.DateTime.now;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -23,7 +22,7 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
 /**
- * Tests specific to {@link org.assertj.jodatime.api.ZonedDateTimeAssert#isIn(org.joda.time.DateTime...)} that can't be done
+ * Tests specific to {@link org.assertj.jodatime.api.ZonedDateTimeAssert#isIn(ZonedDateTime...)} that can't be done
  * in {@link org.assertj.core.api.AbstractAssert#isIn(Object...)} tests.
  *
  * @author Joel Costigliola
@@ -38,7 +37,7 @@ public class ZonedDateTimeAssert_isIn_Test extends ZonedDateTimeAssertBaseTest {
     ZoneId cestTimeZone = ZoneId.of("Europe/Berlin");
     ZonedDateTime cestDateTime = ZonedDateTime.of(2013, 6, 10, 2, 0, 0, 0, cestTimeZone);
     // cestDateTime and utcDateTime are equals in same timezone
-    assertThat(utcDateTime).isIn(cestDateTime, now());
+    assertThat(utcDateTime).isIn(cestDateTime, ZonedDateTime.now());
   }
 
 }

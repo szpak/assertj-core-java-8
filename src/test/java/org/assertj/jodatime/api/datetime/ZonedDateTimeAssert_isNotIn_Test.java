@@ -19,10 +19,9 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
 import static org.assertj.jodatime.api.Assertions.assertThat;
-import static org.joda.time.DateTime.now;
 
 /**
- * Tests specific to {@link org.assertj.jodatime.api.ZonedDateTimeAssert#isNotIn(org.joda.time.DateTime...)} that can't be
+ * Tests specific to {@link org.assertj.jodatime.api.ZonedDateTimeAssert#isNotIn(ZonedDateTime...)} that can't be
  * done in {@link org.assertj.core.api.AbstractAssert#isNotIn(Object...)} tests.
  *
  * @author Joel Costigliola
@@ -36,6 +35,6 @@ public class ZonedDateTimeAssert_isNotIn_Test extends ZonedDateTimeAssertBaseTes
     ZoneId cestTimeZone = ZoneId.of("Europe/Berlin");
     ZonedDateTime cestDateTime = ZonedDateTime.of(2013, 6, 10, 0, 0, 0, 0, cestTimeZone);
     // cestDateTime and utcDateTime are not equals in same timezone
-    assertThat(utcDateTime).isNotIn(cestDateTime, now());
+    assertThat(utcDateTime).isNotIn(cestDateTime, ZonedDateTime.now());
   }
 }

@@ -15,13 +15,12 @@ package org.assertj.jodatime.api;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 
 import java.time.ZonedDateTime;
 
 /**
- * Tests for <code>{@link Assertions#assertThat(DateTime)}</code>.
+ * Tests for <code>{@link Assertions#assertThat(ZonedDateTime)}</code>.
  * 
  * @author Joel Costigliola
  * @author Marcin Zajączkowski

@@ -28,7 +28,7 @@ import org.assertj.core.internal.Failures;
 import org.assertj.core.internal.Objects;
 
 /**
- * Assertions fot Joda {@link LocalDateTime} type.
+ * Assertions for {@link LocalDateTime} type from new Date & Time API introduced in Java 8.
  * 
  * @author Paweł Stawicki
  * @author Joel Costigliola
@@ -80,9 +80,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   /**
    * Same assertion as {@link #isBefore(LocalDateTime)} but the {@link LocalDateTime} is built from given String, which
    * must follow <a href=
-   * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
-   * constructor.
+   * "http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME"
+   * >ISO LocalDateTime format</a> to allow calling {@link LocalDateTime#parse(CharSequence)} method.
    * <p>
    * Example :
    * 
@@ -109,8 +108,9 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Example :
    * 
    * <pre>
-   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(LocalDateTime.of(&quot;2000-01-01&quot;))
-   *                                            .isBeforeOrEqualTo(LocalDateTime.of(&quot;2000-01-02&quot;));
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;))
+   *           .isBeforeOrEqualTo(LocalDateTime.of(&quot;2000-01-01&quot;))
+   *           .isBeforeOrEqualTo(LocalDateTime.of(&quot;2000-01-02&quot;));
    * </pre>
    * 
    * @param other the given {@link LocalDateTime}.
@@ -131,9 +131,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   /**
    * Same assertion as {@link #isBeforeOrEqualTo(LocalDateTime)} but the {@link LocalDateTime} is built from given
    * String, which must follow <a href=
-   * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
-   * constructor.
+   * "http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME"
+   * >ISO LocalDateTime format</a> to allow calling {@link LocalDateTime#parse(CharSequence)} method.
    * <p>
    * Example :
    * 
@@ -183,9 +182,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   /**
    * Same assertion as {@link #isAfterOrEqualTo(LocalDateTime)} but the {@link LocalDateTime} is built from given
    * String, which must follow <a href=
-   * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
-   * constructor.
+   * "http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME"
+   * >ISO LocalDateTime format</a> to allow calling {@link LocalDateTime#parse(CharSequence)} method.
    * <p>
    * Example :
    * 
@@ -234,9 +232,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   /**
    * Same assertion as {@link #isAfter(LocalDateTime)} but the {@link LocalDateTime} is built from given a String that
    * must follow <a href=
-   * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
-   * constructor.
+   * "http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME"
+   * >ISO LocalDateTime format</a> to allow calling {@link LocalDateTime#parse(CharSequence)} method.
    * <p>
    * Example :
    * 
@@ -260,9 +257,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   /**
    * Same assertion as {@link #isEqualTo(Object)} (where Object is expected to be {@link LocalDateTime}) but here you
    * pass {@link LocalDateTime} String representation that must follow <a href=
-   * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
-   * constructor.
+   * "http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME"
+   * >ISO LocalDateTime format</a> to allow calling {@link LocalDateTime#parse(CharSequence)} method.
    * <p>
    * Example :
    * 
@@ -286,9 +282,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   /**
    * Same assertion as {@link #isNotEqualTo(Object)} (where Object is expected to be {@link LocalDateTime}) but here you
    * pass {@link LocalDateTime} String representation that must follow <a href=
-   * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
-   * constructor.
+   * "http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME"
+   * >ISO LocalDateTime format</a> to allow calling {@link LocalDateTime#parse(CharSequence)} method.
    * <p>
    * Example :
    * 
@@ -312,9 +307,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   /**
    * Same assertion as {@link #isIn(Object...)} (where Objects are expected to be {@link LocalDateTime}) but here you
    * pass {@link LocalDateTime} String representations that must follow <a href=
-   * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
-   * constructor.
+   * "http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME"
+   * >ISO LocalDateTime format</a> to allow calling {@link LocalDateTime#parse(CharSequence)} method.
    * <p>
    * Example :
    * 
@@ -338,9 +332,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   /**
    * Same assertion as {@link #isNotIn(Object...)} (where Objects are expected to be {@link LocalDateTime}) but here you
    * pass {@link LocalDateTime} String representations that must follow <a href=
-   * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
-   * constructor.
+   * "http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME"
+   * >ISO LocalDateTime format</a> to allow calling {@link LocalDateTime#parse(CharSequence)} method.
    * <p>
    * Example :
    * 
@@ -383,7 +376,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * otherwise throws a {@link IllegalArgumentException} with an explicit message
    * 
    * @param localDateTimeAsString String representing the {@link LocalDateTime} to compare actual with
-   * @throws a {@link IllegalArgumentException} with an explicit message if the given {@link String} is null
+   * @throws IllegalArgumentException with an explicit message if the given {@link String} is null
    */
   private static void assertLocalDateTimeAsStringParameterIsNotNull(String localDateTimeAsString) {
     if (localDateTimeAsString == null) {
@@ -397,7 +390,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * {@link IllegalArgumentException} with an explicit message
    * 
    * @param other the {@link LocalDateTime} to check
-   * @throws a {@link IllegalArgumentException} with an explicit message if the given {@link LocalDateTime} is null
+   * @throws IllegalArgumentException with an explicit message if the given {@link LocalDateTime} is null
    */
   private static void assertLocalDateTimeParameterIsNotNull(LocalDateTime other) {
     if (other == null) {
@@ -407,13 +400,13 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
 
   /**
    * Verifies that actual and given {@code LocalDateTime} have same year, month, day, hour, minute and second fields,
-   * (millisecond fields are ignored in comparison).
+   * (nanosecond fields are ignored in comparison).
    * <p>
-   * Assertion can fail with localDateTimes in same chronological millisecond time window, e.g :
+   * Assertion can fail with localDateTimes in same chronological nanosecond time window, e.g :
    * <p>
-   * 2000-01-01T00:00:<b>01.000</b> and 2000-01-01T00:00:<b>00.999</b>.
+   * 2000-01-01T00:00:<b>01.000000000</b> and 2000-01-01T00:00:<b>00.999999999</b>.
    * <p>
-   * Assertion fails as second fields differ even if time difference is only 1ms.
+   * Assertion fails as second fields differ even if time difference is only 1ns.
    * <p>
    * Code example :
    * 
@@ -425,16 +418,16 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * 
    * // failing assertions (even if time difference is only 1ms)
    * LocalDateTime localDateTimeA = LocalDateTime.of(2000, 1, 1, 0, 0, 1, 0);
-   * LocalDateTime localDateTimeB = LocalDateTime.of(2000, 1, 1, 0, 0, 0, 999);
+   * LocalDateTime localDateTimeB = LocalDateTime.of(2000, 1, 1, 0, 0, 0, 999999999);
    * assertThat(localDateTimeA).isEqualToIgnoringMillis(localDateTimeB);
    * </pre>
-   * 
    * @param other the given {@link LocalDateTime}.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code LocalDateTime} is {@code null}.
    * @throws AssertionError if the actual {@code LocalDateTime} is are not equal with milliseconds ignored.
    */
+  //TODO: Rename
   public LocalDateTimeAssert isEqualToIgnoringMillis(LocalDateTime other) {
     Objects.instance().assertNotNull(info, actual);
     assertLocalDateTimeParameterIsNotNull(other);
@@ -446,7 +439,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
 
   /**
    * Verifies that actual and given {@link LocalDateTime} have same year, month, day, hour and minute fields (second and
-   * millisecond fields are ignored in comparison).
+   * nanosecond fields are ignored in comparison).
    * <p>
    * Assertion can fail with LocalDateTimes in same chronological second time window, e.g :
    * <p>
@@ -457,7 +450,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Code example :
    * 
    * <pre>
-   * // successfull assertions
+   * // successful assertions
    * LocalDateTime localDateTime1 = LocalDateTime.of(2000, 1, 1, 23, 50, 0, 0);
    * LocalDateTime localDateTime2 = LocalDateTime.of(2000, 1, 1, 23, 50, 10, 456);
    * assertThat(localDateTime1).isEqualToIgnoringSeconds(localDateTime2);
@@ -472,7 +465,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * @return this assertion object.
    * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code LocalDateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code LocalDateTime} is are not equal with second and millisecond fields
+   * @throws AssertionError if the actual {@code LocalDateTime} is are not equal with second and nanosecond fields
    *           ignored.
    */
   public LocalDateTimeAssert isEqualToIgnoringSeconds(LocalDateTime other) {
@@ -486,7 +479,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
 
   /**
    * Verifies that actual and given {@code LocalDateTime} have same year, month, day and hour fields (minute, second and
-   * millisecond fields are ignored in comparison).
+   * nanosecond fields are ignored in comparison).
    * <p>
    * Assertion can fail with localDateTimes in same chronological second time window, e.g :
    * <p>
@@ -497,7 +490,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Code example :
    * 
    * <pre>
-   * // successfull assertions
+   * // successful assertions
    * LocalDateTime localDateTime1 = LocalDateTime.of(2000, 1, 1, 23, 50, 0, 0);
    * LocalDateTime localDateTime2 = LocalDateTime.of(2000, 1, 1, 23, 00, 2, 7);
    * assertThat(localDateTime1).isEqualToIgnoringMinutes(localDateTime2);
@@ -526,7 +519,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
 
   /**
    * Verifies that actual and given {@code LocalDateTime} have same year, month and day fields (hour, minute, second and
-   * millisecond fields are ignored in comparison).
+   * nanosecond fields are ignored in comparison).
    * <p>
    * Assertion can fail with localDateTimes in same chronological minute time window, e.g :
    * <p>
@@ -552,7 +545,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * @return this assertion object.
    * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code LocalDateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code LocalDateTime} is are not equal with second and millisecond fields
+   * @throws AssertionError if the actual {@code LocalDateTime} is are not equal with second and nanosecond fields
    *           ignored.
    */
   public LocalDateTimeAssert isEqualToIgnoringHours(LocalDateTime other) {

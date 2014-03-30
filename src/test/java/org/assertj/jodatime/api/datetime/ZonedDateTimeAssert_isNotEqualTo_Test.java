@@ -21,7 +21,7 @@ import java.time.ZonedDateTime;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
 /**
- * Tests specific to {@link org.assertj.jodatime.api.ZonedDateTimeAssert#isNotEqualTo(org.joda.time.DateTime)} that can't be
+ * Tests specific to {@link org.assertj.jodatime.api.ZonedDateTimeAssert#isNotEqualTo(ZonedDateTime)} that can't be
  * done in {@link org.assertj.core.api.AbstractAssert#isNotEqualTo(Object)} tests.
  *
  * @author Joel Costigliola

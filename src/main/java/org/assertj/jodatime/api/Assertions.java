@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 /**
- * The entry point for all Joda Time assertions.
+ * The entry point for all new Date & Time API from Java 8 assertions.
  * 
  * @author Joel Costigliola
  * @author Paweł Stawicki

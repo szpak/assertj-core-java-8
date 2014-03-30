@@ -16,7 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
-import org.joda.time.DateTime;
 import java.time.LocalDateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
@@ -24,7 +23,7 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 /**
- * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)
+ * Only test String based assertion (tests with {@link java.time.ZonedDateTime} are already defined in assertj-core)
  * 
  * @author Joel Costigliola
  * @author Marcin Zajączkowski

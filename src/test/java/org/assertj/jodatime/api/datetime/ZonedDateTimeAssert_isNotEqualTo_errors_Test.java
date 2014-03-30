@@ -17,7 +17,6 @@ import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 import static java.time.ZoneOffset.UTC;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -26,8 +25,8 @@ import org.junit.runner.RunWith;
 import java.time.ZonedDateTime;
 
 /**
- * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)
- * 
+ * Only test String based assertion (tests with {@link ZonedDateTime} are already defined in assertj-core)
+ *
  * @author Joel Costigliola
  * @author Marcin Zajączkowski
  */
