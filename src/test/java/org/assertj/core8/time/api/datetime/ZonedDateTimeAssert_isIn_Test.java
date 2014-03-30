@@ -14,7 +14,6 @@ package org.assertj.core8.time.api.datetime;
 
 import static org.assertj.core8.time.api.Assertions.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.ZoneId;
@@ -31,7 +30,6 @@ import java.time.ZonedDateTime;
 public class ZonedDateTimeAssert_isIn_Test extends ZonedDateTimeAssertBaseTest {
 
   @Test
-  @Ignore //TODO: Explain why it fails
   public void isIn_should_compare_datetimes_in_actual_timezone() {
     ZonedDateTime utcDateTime = ZonedDateTime.of(2013, 6, 10, 0, 0, 0, 0, ZoneOffset.UTC);
     ZoneId cestTimeZone = ZoneId.of("Europe/Berlin");
