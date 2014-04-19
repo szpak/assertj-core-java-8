@@ -17,11 +17,12 @@ import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.core8.api.Assertions.assertThat;
 import static org.assertj.core8.api.LocalDateTimeAssert.NULL_LOCAL_DATE_TIME_PARAMETER_MESSAGE;
 
-import org.assertj.core8.api.JodaTimeBaseTest;
+import org.assertj.core8.api.DateTimeBaseTest;
+
 import java.time.LocalDateTime;
 import org.junit.Test;
 
-public class LocalDateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest {
+public class LocalDateTimeAssert_isEqualToIgnoringHours_Test extends DateTimeBaseTest {
 
   private final LocalDateTime refLocalDateTime = LocalDateTime.of(2000, 1, 2, 0, 0, 0, 0);
 

@@ -18,7 +18,7 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 
-public class JodaTimeBaseTest {
+public class DateTimeBaseTest {
 
   @Rule
   public ExpectedException thrown = none();

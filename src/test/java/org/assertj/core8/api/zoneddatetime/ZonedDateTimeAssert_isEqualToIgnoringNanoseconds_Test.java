@@ -18,12 +18,12 @@ import static org.assertj.core8.api.ZonedDateTimeAssert.NULL_DATE_TIME_PARAMETER
 import static org.assertj.core8.api.Assertions.assertThat;
 import static java.time.ZoneOffset.UTC;
 
-import org.assertj.core8.api.JodaTimeBaseTest;
+import org.assertj.core8.api.DateTimeBaseTest;
 import org.junit.Test;
 
 import java.time.ZonedDateTime;
 
-public class ZonedDateTimeAssert_isEqualToIgnoringNanoseconds_Test extends JodaTimeBaseTest {
+public class ZonedDateTimeAssert_isEqualToIgnoringNanoseconds_Test extends DateTimeBaseTest {
 
   private final ZonedDateTime refDatetime = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 0, UTC);
 

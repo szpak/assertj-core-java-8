@@ -12,12 +12,12 @@
  */
 package org.assertj.core8.api;
 
-import static java.time.ZoneOffset.UTC;
-import static org.junit.Assume.assumeTrue;
-
 import org.junit.experimental.theories.DataPoint;
 
 import java.time.ZonedDateTime;
+
+import static java.time.ZoneOffset.UTC;
+import static org.junit.Assume.assumeTrue;
 
 /**
  * 
@@ -27,7 +27,7 @@ import java.time.ZonedDateTime;
  * @author Marcin Zajączkowski
  *
  */
-public class DateTimeAssertBaseTest extends JodaTimeBaseTest {
+public class ZonedDateTimeAssertBaseTest extends DateTimeBaseTest {
 
   @DataPoint
   public static ZonedDateTime dateTime1 = ZonedDateTime.of(2000, 12, 14, 0, 0, 0, 0, UTC);
