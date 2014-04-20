@@ -12,23 +12,23 @@
  */
 package org.assertj.core8.api;
 
+import org.assertj.core.api.AbstractAssert;
+import org.assertj.core.internal.Failures;
+import org.assertj.core.internal.Objects;
+
+import java.time.LocalDateTime;
+
 import static org.assertj.core8.error.ShouldBeAfter.shouldBeAfter;
 import static org.assertj.core8.error.ShouldBeAfterOrEqualsTo.shouldBeAfterOrEqualsTo;
 import static org.assertj.core8.error.ShouldBeBefore.shouldBeBefore;
 import static org.assertj.core8.error.ShouldBeBeforeOrEqualsTo.shouldBeBeforeOrEqualsTo;
 import static org.assertj.core8.error.ShouldBeEqualIgnoringHours.shouldBeEqualIgnoringHours;
-import static org.assertj.core8.error.ShouldBeEqualIgnoringNanos.shouldBeEqualIgnoringNanos;
 import static org.assertj.core8.error.ShouldBeEqualIgnoringMinutes.shouldBeEqualIgnoringMinutes;
+import static org.assertj.core8.error.ShouldBeEqualIgnoringNanos.shouldBeEqualIgnoringNanos;
 import static org.assertj.core8.error.ShouldBeEqualIgnoringSeconds.shouldBeEqualIgnoringSeconds;
 
-import java.time.LocalDateTime;
-
-import org.assertj.core.api.AbstractAssert;
-import org.assertj.core.internal.Failures;
-import org.assertj.core.internal.Objects;
-
 /**
- * Assertions for {@link LocalDateTime} type from new Date & Time API introduced in Java 8.
+ * Assertions for {@link LocalDateTime} type from new Date &amp; Time API introduced in Java 8.
  * 
  * @author Paweł Stawicki
  * @author Joel Costigliola

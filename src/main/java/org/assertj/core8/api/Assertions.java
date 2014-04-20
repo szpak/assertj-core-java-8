@@ -18,7 +18,7 @@ import java.time.ZonedDateTime;
 import java.util.Optional;
 
 /**
- * The entry point for all new Date & Time API from Java 8 assertions.
+ * The entry point for all new Date &amp; Time API from Java 8 assertions.
  * 
  * @author Joel Costigliola
  * @author Paweł Stawicki
@@ -46,7 +46,7 @@ public class Assertions {
     return new OptionalAssert<>(optional);
   }
 
-  /** Creates a new </code>{@link Assertions}</code>. */
+  /** Creates a new <code>{@link Assertions}</code>. */
   protected Assertions() {
     // empty
   }

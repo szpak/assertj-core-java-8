@@ -12,12 +12,12 @@
  */
 package org.assertj.core8.error;
 
-import java.util.Date;
-
 import org.assertj.core.error.BasicErrorMessageFactory;
 import org.assertj.core.error.ErrorMessageFactory;
 import org.assertj.core.internal.ComparisonStrategy;
 import org.assertj.core.internal.StandardComparisonStrategy;
+
+import java.util.Date;
 
 /**
  * Creates an error message indicating that an assertion that verifies that a {@link Date} is after another one failed.
@@ -27,7 +27,7 @@ import org.assertj.core.internal.StandardComparisonStrategy;
 public class ShouldBeAfter extends BasicErrorMessageFactory {
 
   /**
-   * Creates a new </code>{@link ShouldBeAfter}</code>.
+   * Creates a new <code>{@link ShouldBeAfter}</code>.
    * @param actual the actual value in the failed assertion.
    * @param other the value used in the failed assertion to compare the actual value to.
    * @param comparisonStrategy the {@link ComparisonStrategy} used to evaluate assertion.
@@ -38,7 +38,7 @@ public class ShouldBeAfter extends BasicErrorMessageFactory {
   }
 
   /**
-   * Creates a new </code>{@link ShouldBeAfter}</code>.
+   * Creates a new <code>{@link ShouldBeAfter}</code>.
    * @param actual the actual value in the failed assertion.
    * @param other the value used in the failed assertion to compare the actual value to.
    * @return the created {@code ErrorMessageFactory}.
