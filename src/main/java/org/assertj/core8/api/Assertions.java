@@ -15,6 +15,7 @@ package org.assertj.core8.api;
 import java.time.LocalDateTime;
 
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 /**
  * The entry point for all new Date & Time API from Java 8 assertions.
@@ -22,6 +23,7 @@ import java.time.ZonedDateTime;
  * @author Joel Costigliola
  * @author Paweł Stawicki
  * @author Marcin Zajączkowski
+ * @author Jean-Christophe Gay
  */
 public class Assertions {
 
@@ -31,6 +33,17 @@ public class Assertions {
 
   public static LocalDateTimeAssert assertThat(LocalDateTime localDateTime) {
     return new LocalDateTimeAssert(LocalDateTimeAssert.class, localDateTime);
+  }
+
+  /**
+   * Create assertion for {@link java.util.Optional}.
+   *
+   * @param optional the actual value.
+   * @param <T>      the type of the value contained in the {@link java.util.Optional}.
+   * @return the created assertion objet.
+   */
+  public static <T> OptionalAssert<T> assertThat(Optional<T> optional) {
+    return new OptionalAssert<>(optional);
   }
 
   /** Creates a new </code>{@link Assertions}</code>. */
