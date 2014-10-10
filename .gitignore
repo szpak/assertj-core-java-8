@@ -1,13 +1,16 @@
-*.class
-target/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-.idea
-*.iml
-
+#Maven build result directory
+/target
+#IntelliJ project files
+/.idea
+/*.iml
+out
+#Eclipse project files
+/.settings
+/.classpath
+/.project
+#Other
+/clover.license
+/actual.txt
+/expected.txt
 #jEnv configuration
 .java-version
