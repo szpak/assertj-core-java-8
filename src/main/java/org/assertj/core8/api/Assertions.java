@@ -40,10 +40,21 @@ public class Assertions {
    *
    * @param optional the actual value.
    * @param <T>      the type of the value contained in the {@link java.util.Optional}.
-   * @return the created assertion objet.
+   * @return the created assertion object.
    */
   public static <T> OptionalAssert<T> assertThat(Optional<T> optional) {
     return new OptionalAssert<>(optional);
+  }
+
+  /**
+   * Create assertion for condition evaluation.
+   *
+   * @param actual the actual value
+   * @param <T> the type of action value
+   * @return the created assertion object
+   */
+  public static <T> PredicateAssert<T> assertThat(T actual) {
+    return new PredicateAssert<T>(actual);
   }
 
   /** Creates a new <code>{@link Assertions}</code>. */
